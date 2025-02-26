@@ -1,5 +1,4 @@
 import {Box, List, Typography} from "@mui/material";
-import { TaskList } from "../components/TaskList.jsx";
 import {AddButton} from "../components/AddButton.jsx";
 import {SelectTasks} from "../components/SelectTasks.jsx";
 import {useTaskContext} from "../contexts/TaskContext.jsx";
