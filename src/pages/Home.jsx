@@ -1,10 +1,11 @@
-import { Box, Typography } from "@mui/material";
+import {Box, List, Typography} from "@mui/material";
 import { TaskList } from "../components/TaskList.jsx";
 import {AddButton} from "../components/AddButton.jsx";
 import {SelectTasks} from "../components/SelectTasks.jsx";
 import {useTaskContext} from "../contexts/TaskContext.jsx";
 import {useState} from "react";
 import {InputModal} from "../components/InputModal.jsx";
+import {TaskItem} from "../components/TaskItem.jsx";
 
 export const Home = () => {
 	const { filteredTasks } = useTaskContext();
@@ -37,7 +38,18 @@ export const Home = () => {
 					<SelectTasks value={filterTasks} onChange={setFilterTasks} />
 					<AddButton />
 				</Box>
-				<TaskList tasks={tasksToDisplay} />
+
+				<List sx={{ width: '100%', bgcolor: "background.paper" }}>
+					{tasksToDisplay
+						.sort((a, b) => a.is_completed - b.is_completed)
+						.map((task) => (
+							<TaskItem
+								key={task.id}
+								task={task}
+							/>
+						))
+					}
+				</List>
 
 				<InputModal />
 			</Box>
